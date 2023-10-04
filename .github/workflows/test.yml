@@ -18,10 +18,14 @@ jobs:
           architecture: x64
       - name: Install Poetry
         uses: snok/install-poetry@v1
-        # with:
-        #   version: 1.6.1
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        with:
+          version: 1.6.1
+      # SSH debug helper
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      - name: Add an additional debug message
+        run: sed -i '299i \            import traceback; print(traceback.format_exc())' /c/Users/runneradmin/.local/venv/Lib/site-packages/poetry/installation/executor.py
+        shell: bash
       - name: Install package
         run: poetry install
         shell: bash
