@@ -20,8 +20,8 @@ jobs:
         uses: snok/install-poetry@v1
         # with:
         #   version: 1.6.1
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: Install package
         run: poetry install
         shell: bash
