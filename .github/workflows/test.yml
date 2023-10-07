@@ -29,3 +29,24 @@ jobs:
       - name: Install package
         run: poetry install
         shell: bash
+  test-pr:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          architecture: x64
+      - name: Install Poetry
+        run: pipx install git+https://github.com/radoering/poetry.git@artifact-cache-race-condition
+      # SSH debug helper
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+      # - name: Add an additional debug message
+      #   run: sed -i '299i \            import traceback; print(traceback.format_exc())' /c/Users/runneradmin/.local/venv/Lib/site-packages/poetry/installation/executor.py
+      #   shell: bash
+      - name: Install package
+        run: poetry install
+        shell: bash
